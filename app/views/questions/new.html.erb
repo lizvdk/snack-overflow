@@ -1,0 +1,10 @@
+<h1>Ask a Question</h1>
+
+<%= simple_form_for @question do |f|%>
+  <%= f.error_notification %>
+
+  <%= f.input :title %>
+  <%= f.input :description, label: "Additional details" %>
+
+  <%= f.submit "Ask question" %>
+<% end %>

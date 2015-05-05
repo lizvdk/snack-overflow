@@ -1,0 +1,8 @@
+<div id="question-<%=@question.id %>">
+  <h1><%= @question.title %></h1>
+  <p class="asker">asked by
+    <b><%= @question.user.email %></b>
+    <small><%= @question.created_at %></small>
+  </p>
+  <blockquote><%= @question.description %></blockquote>
+</div>
