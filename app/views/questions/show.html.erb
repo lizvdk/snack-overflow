@@ -4,5 +4,7 @@
     <b><%= @question.user.email %></b>
     <small><%= @question.created_at %></small>
   </p>
-  <blockquote><%= @question.description %></blockquote>
+  <% if @question.description.present? %>
+    <blockquote><%= @question.description %></blockquote>
+  <% end %>
 </div>
