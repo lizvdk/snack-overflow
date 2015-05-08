@@ -7,4 +7,35 @@
   <% if @question.description.present? %>
     <blockquote><%= @question.description %></blockquote>
   <% end %>
+
+  <div id="answers">
+    <h3>Answers</h3>
+    <% if @answers.present? %>
+      <% @answers.each do |answer| %>
+        <div id="answer-<%= answer.id %>">
+          <p><%= answer.body %></p>
+          <p>by <b><%= answer.user.email %></b>
+            <small><%= answer.created_at %></small>
+          </p>
+        </div>
+      <% end %>
+    <% else %>
+      <p> No answers yet. </p>
+    <% end %>
+  </div>
+
+  <div id="new-answer">
+    <% if current_user %>
+      <%= simple_form_for [@question, @answer] do |f|%>
+        <%= f.error_notification %>
+
+        <%= f.input :body, label: "Answer" %>
+
+        <%= f.submit "Submit answer" %>
+      <% end %>
+    <% else %>
+      <p>Please sign in to answer this question.</p>
+
+    <% end %>
+  </div>
 </div>
