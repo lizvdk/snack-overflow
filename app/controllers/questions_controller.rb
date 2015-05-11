@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-  before_action :authenticate_user!, except: [:show]
+  before_action :authenticate_user!, except: [:show, :index]
 
   def new
     @question = Question.new
@@ -20,6 +20,10 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
     @answers = @question.answers
     @answer = Answer.new
+  end
+
+  def index
+    @questions = Question.recent_first.all
   end
 
   private

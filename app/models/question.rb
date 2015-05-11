@@ -6,4 +6,6 @@ class Question < ActiveRecord::Base
   validates :title, presence: true,
                     length: { in: 4..100 }
   validates :description, length: { maximum: 2000 }
+
+  scope :recent_first, -> { order(created_at: :desc) }
 end
