@@ -6,7 +6,7 @@ feature "view recent questions", %{
   So that I can see what other users have recently asked
 } do
 
-  questions = FactoryGirl.create_list(:question, 20)
+  let!(:questions) { FactoryGirl.create_list(:question, 20) }
 
   scenario "display questions, most recent- first" do
 

@@ -1,0 +1,15 @@
+<div>
+  <%= link_to "", votes_path(vote: { votable_type: votable.class,
+                                       votable_id: votable.id,
+                                            value: "upvote"}),
+              method: :post, remote: :true, class: "upvote" %>
+</div>
+<div class="vote-total">
+  <%= votable.votes.size %>
+</div>
+<div>
+  <%= link_to "", votes_path(vote: { votable_type: votable.class,
+                                       votable_id: votable.id,
+                                            value: "downvote"}),
+              method: :post, remote: :true, class: "downvote" %>
+</div>

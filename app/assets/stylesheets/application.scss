@@ -1,8 +1,31 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "font-awesome";
 
 body { padding-top: 70px; }
 
 .alert-notice, .alert-alert {
   background-color: $brand-info;
+}
+
+.voting {
+  font-family: FontAwesome;
+  font-size: 2em;
+  text-align: center;
+
+  .upvote:after {
+    content: '\f01b';
+  }
+
+  .voted.upvote:after {
+    content: '\f0aa';
+  }
+
+  .downvote:after {
+    content: '\f01a';
+  }
+
+  .voted.downvote {
+    content: '\f0ab';
+  }
 }

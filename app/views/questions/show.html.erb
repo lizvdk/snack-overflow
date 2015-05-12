@@ -1,12 +1,20 @@
 <div id="question-<%=@question.id %>">
-  <h1><%= @question.title %></h1>
-  <p class="asker">asked by
-    <b><%= @question.user.email %></b>
-    <small><%= @question.created_at %></small>
-  </p>
-  <% if @question.description.present? %>
-    <blockquote><%= @question.description %></blockquote>
-  <% end %>
+  <div class="row">
+    <div class="col-sm-1 voting">
+      <%= render partial: 'votes/votes', locals: { votable: @question } %>
+    </div>
+
+    <div class="col-sm-10">
+      <h1><%= @question.title %></h1>
+      <p class="asker">asked by
+        <b><%= @question.user.email %></b>
+        <small><%= @question.created_at %></small>
+      </p>
+      <% if @question.description.present? %>
+        <blockquote><%= @question.description %></blockquote>
+      <% end %>
+    </div>
+  </div>
 
   <div id="answers">
     <h3>Answers</h3>

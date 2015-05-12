@@ -12,6 +12,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bootstrap-sass'
 gem 'simple_form'
 gem 'devise'
+gem 'font-awesome-rails'
 
 group :development, :test do
   gem 'byebug'
