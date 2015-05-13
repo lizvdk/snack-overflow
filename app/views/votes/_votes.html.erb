@@ -1,15 +1,86 @@
-<div>
-  <%= link_to "", votes_path(vote: { votable_type: votable.class,
-                                       votable_id: votable.id,
-                                            value: "upvote"}),
-              method: :post, remote: :true, class: "upvote" %>
-</div>
-<div class="vote-total">
-  <%= votable.vote_points %>
-</div>
-<div>
-  <%= link_to "", votes_path(vote: { votable_type: votable.class,
-                                       votable_id: votable.id,
-                                            value: "downvote"}),
-              method: :post, remote: :true, class: "downvote" %>
-</div>
+<% if current_user %>
+
+  <% if votable.has_vote_from?(current_user) %>
+
+    <% if current_user.current_vote_for(votable).upvote? %>
+
+      <div>
+        <%= link_to "", vote_path(current_user.current_vote_for(votable),
+                                  votable_id: votable.id),
+                        method: :delete,
+                        remote: true,
+                        class: "upvote voted" %>
+      </div>
+      <div class="vote-total">
+        <%= votable.vote_points %>
+      </div>
+      <div>
+        <%= link_to "", vote_path(current_user.current_vote_for(votable),
+                                  votable_id: votable.id,
+                                  vote: { value: "downvote" }),
+                        method: :put,
+                        remote: :true,
+                        class: "downvote" %>
+      </div>
+
+    <% elsif current_user.current_vote_for(votable).downvote? %>
+
+      <div>
+        <%= link_to "", vote_path(current_user.current_vote_for(votable),
+                                  votable_id: votable.id,
+                                  vote: { value: "upvote" }),
+                        method: :put,
+                        remote: :true,
+                        class: "upvote" %>
+      </div>
+      <div class="vote-total">
+        <%= votable.vote_points %>
+      </div>
+      <div>
+        <%= link_to "", vote_path(current_user.current_vote_for(votable), votable_id: votable.id),
+                        method: :delete,
+                        remote: true,
+                        class: "downvote voted" %>
+      </div>
+
+    <% end %>
+
+  <% else %>
+    <div>
+      <%= link_to "", votes_path(vote: { votable_type: votable.class,
+                                           votable_id: votable.id,
+                                                value: "upvote" }),
+                  method: :post, remote: :true, class: "upvote" %>
+    </div>
+    <div class="vote-total">
+      <%= votable.vote_points %>
+    </div>
+    <div>
+      <%= link_to "", votes_path(vote: { votable_type: votable.class,
+                                           votable_id: votable.id,
+                                                value: "downvote" }),
+                  method: :post, remote: :true, class: "downvote" %>
+    </div>
+  <% end %>
+<% else %>
+  <a tabindex="0"
+    class="visitor upvote disabled"
+    role="button"
+    data-toggle="popover"
+    data-trigger="hover"
+    data-content="You must sign in to vote.">
+  </a>
+ <div class="vote-total">
+   <%= votable.vote_points %>
+ </div>
+ <a tabindex="0"
+   class="visitor downvote disabled"
+   role="button"
+   data-toggle="popover"
+   data-trigger="hover"
+   data-content="You must sign in to vote.">
+ </a>
+  <script>
+    $('.visitor').popover();
+  </script>
+<% end %>

@@ -17,6 +17,25 @@ class VotesController < ApplicationController
     end
   end
 
+  def destroy
+    @vote = Vote.find(params[:id])
+    @votable = Question.find(params[:votable_id])
+    if @vote.destroy
+      respond_to do |format|
+        format.js
+      end
+    end
+  end
+
+  def update
+    @vote = Vote.find(params[:id])
+    if @vote.update_attributes(vote_params)
+      @votable = Question.find(params[:votable_id])
+      respond_to do |format|
+        format.js
+      end
+    end
+  end
 
   private
 

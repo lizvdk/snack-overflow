@@ -25,7 +25,16 @@ body { padding-top: 70px; }
     content: '\f01a';
   }
 
-  .voted.downvote {
+  .voted.downvote:after {
     content: '\f0ab';
   }
+
+  .disabled {
+    color: #777;
+  }
+
+}
+
+a, a:active, a:hover, a:focus {
+  text-decoration: none;
 }
