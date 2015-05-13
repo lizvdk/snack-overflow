@@ -13,6 +13,9 @@ gem 'bootstrap-sass'
 gem 'simple_form'
 gem 'devise'
 gem 'font-awesome-rails'
+gem 'puma'
+
+gem 'rails_12factor', group: :production
 
 group :development, :test do
   gem 'byebug'
