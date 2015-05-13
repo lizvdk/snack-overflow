@@ -19,14 +19,7 @@
   <div id="answers">
     <h3>Answers</h3>
     <% if @answers.present? %>
-      <% @answers.each do |answer| %>
-        <div id="answer-<%= answer.id %>">
-          <p><%= answer.body %></p>
-          <p>by <b><%= answer.user.email %></b>
-            <small><%= answer.created_at %></small>
-          </p>
-        </div>
-      <% end %>
+      <%= render(@answers) %>
     <% else %>
       <p> No answers yet. </p>
     <% end %>
