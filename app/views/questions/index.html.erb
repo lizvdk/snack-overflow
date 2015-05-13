@@ -1,7 +1,5 @@
 <h1>Recent Questions</h1>
 
 <ul id="recent-questions">
-  <% @questions.each do |question| %>
-    <li id="question-<%= question.id %>"><%= link_to question.title, question_path(question) %></li>
-  <% end %>
+  <%= render(@questions) %>
 </ul>
