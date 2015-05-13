@@ -5,7 +5,7 @@
               method: :post, remote: :true, class: "upvote" %>
 </div>
 <div class="vote-total">
-  <%= votable.votes.size %>
+  <%= votable.vote_points %>
 </div>
 <div>
   <%= link_to "", votes_path(vote: { votable_type: votable.class,

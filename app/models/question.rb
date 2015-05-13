@@ -9,4 +9,8 @@ class Question < ActiveRecord::Base
   validates :description, length: { maximum: 2000 }
 
   scope :recent_first, -> { order(created_at: :desc) }
+
+  def vote_points
+    votes.upvote.size - votes.downvote.size
+  end
 end
