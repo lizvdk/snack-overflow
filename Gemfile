@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+ruby '2.2.1'
 
 gem 'rails', '4.2.1'
 gem 'pg'
@@ -14,6 +14,7 @@ gem 'simple_form'
 gem 'devise'
 gem 'font-awesome-rails'
 gem 'puma'
+gem 'newrelic_rpm'
 
 gem 'rails_12factor', group: :production
 
