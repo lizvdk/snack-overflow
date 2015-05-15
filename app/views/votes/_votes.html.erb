@@ -1,6 +1,27 @@
 <% if current_user %>
+  <% if current_user == votable.user %>
+    <a tabindex="0"
+      class="votable-creator upvote disabled"
+      role="button"
+      data-toggle="popover"
+      data-trigger="hover"
+      data-content="Sorry, You cannot vote for yourself! ">
+    </a>
+    <div class="vote-total">
+      <%= votable.vote_points %>
+    </div>
+    <a tabindex="0"
+      class="votable-creator downvote disabled"
+      role="button"
+      data-toggle="popover"
+      data-trigger="hover"
+      data-content="Why would you downvote yourself? You can't!">
+    </a>
+   <script>
+    $('.votable-creator').popover();
+  </script>
 
-  <% if votable.has_vote_from?(current_user) %>
+  <% elsif votable.has_vote_from?(current_user) %>
 
     <% if current_user.current_vote_for(votable).upvote? %>
 
@@ -68,7 +89,7 @@
     role="button"
     data-toggle="popover"
     data-trigger="hover"
-    data-content="You must sign in to vote.">
+    data-content="You must sign in to upvote.">
   </a>
  <div class="vote-total">
    <%= votable.vote_points %>
@@ -78,7 +99,7 @@
    role="button"
    data-toggle="popover"
    data-trigger="hover"
-   data-content="You must sign in to vote.">
+   data-content="You must sign in to downvote.">
  </a>
   <script>
     $('.visitor').popover();
