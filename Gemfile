@@ -13,6 +13,7 @@ gem 'bootstrap-sass'
 gem 'simple_form'
 gem 'devise'
 gem 'font-awesome-rails'
+gem 'redcarpet'
 gem 'puma'
 gem 'newrelic_rpm'
 

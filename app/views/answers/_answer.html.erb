@@ -1,5 +1,5 @@
 <div id="answer-<%= answer.id %>">
-  <p><%= answer.body %></p>
+  <p><%= markdown(answer.body) %></p>
   <p>by <b><%= answer.user.email %></b>
     <small><%= answer.created_at %></small>
   </p>

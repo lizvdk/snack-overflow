@@ -11,7 +11,7 @@
         <small><%= @question.created_at %></small>
       </p>
       <% if @question.description.present? %>
-        <blockquote><%= @question.description %></blockquote>
+        <blockquote><%= markdown(@question.description) %></blockquote>
       <% end %>
     </div>
   </div>
