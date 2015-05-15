@@ -35,7 +35,7 @@ feature "vote on a question", %{
 
   pending scenario "authenticated user removes upvote by clicking upvote again", js: true, driver: :webkit do
     # Working when tested manually.
-    
+
     sign_in user
     visit question_path(question)
 
@@ -58,4 +58,5 @@ feature "vote on a question", %{
   pending "authenticated user switches upvote to downvote"
   pending "authenticated user switches downvote to upvote"
   pending "unauthenticated visitor may not vote"
+  pending "user cannot vote on a question they asked"
 end
