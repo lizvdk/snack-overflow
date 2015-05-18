@@ -6,6 +6,8 @@ class VotesController < ApplicationController
     @vote.user = current_user
     if params[:vote][:votable_type] == 'Question'
       @votable = Question.find(params[:vote][:votable_id])
+    elsif params[:vote][:votable_type] == 'Answer'
+      @votable = Answer.find(params[:vote][:votable_id])
     end
 
     respond_to do |format|
@@ -21,6 +23,8 @@ class VotesController < ApplicationController
     @vote = Vote.find(params[:id])
     if params[:vote][:votable_type] == 'Question'
       @votable = Question.find(params[:vote][:votable_id])
+    elsif params[:vote][:votable_type] == 'Answer'
+      @votable = Answer.find(params[:vote][:votable_id])
     end
 
     if @vote.destroy
@@ -34,8 +38,10 @@ class VotesController < ApplicationController
     @vote = Vote.find(params[:id])
     if params[:vote][:votable_type] == 'Question'
       @votable = Question.find(params[:vote][:votable_id])
+    elsif params[:vote][:votable_type] == 'Answer'
+      @votable = Answer.find(params[:vote][:votable_id])
     end
-    
+
     if @vote.update_attributes(vote_params)
       respond_to do |format|
         format.js

@@ -1,6 +1,13 @@
 <div id="answer-<%= answer.id %>">
-  <p><%= markdown(answer.body) %></p>
-  <p>by <b><%= answer.user.email %></b>
-    <small><%= answer.created_at %></small>
-  </p>
+  <div class="row">
+    <div class="col-xs-1 voting">
+      <%= render partial: 'votes/votes', locals: { votable: answer } %>
+    </div>
+    <div class="col-xs-11">
+      <p><%= markdown(answer.body) %></p>
+      <p>by <b><%= answer.user.email %></b>
+        <small><%= answer.created_at %></small>
+      </p>
+    </div>
+  </div>
 </div>
