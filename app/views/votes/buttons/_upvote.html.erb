@@ -1,0 +1,62 @@
+<% if current_user %>
+  <% if current_user == votable.user %>
+    <!-- votable creator -->
+    <a tabindex="0"
+      class="votable-creator upvote disabled"
+      role="button"
+      data-toggle="popover"
+      data-trigger="hover"
+      data-content="You cannot vote for your own <%= votable.class.to_s.downcase %>.">
+    </a>
+  <% else %>
+    <% if votable.has_vote_from?(current_user) %>
+      <% if current_user.current_vote_for(votable).upvote? %>
+        <!-- delete vote -->
+        <div>
+          <%= link_to "", vote_path(current_user.current_vote_for(votable),
+                                    vote: {
+                                      votable_type: votable.class,
+                                      votable_id: votable.id,
+                                    }),
+                            method: :delete,
+                            remote: :true,
+                            class: "upvote voted" %>
+        </div>
+      <% elsif current_user.current_vote_for(votable).downvote? %>
+        <!-- update vote: switch from down to up -->
+        <div>
+          <%= link_to "", vote_path(current_user.current_vote_for(votable),
+                                    vote: {
+                                      votable_type: votable.class,
+                                      votable_id: votable.id,
+                                      value: "upvote"
+                                    }),
+                            method: :put,
+                            remote: :true,
+                            class: "upvote" %>
+        </div>
+      <% end %>
+    <% else %>
+      <!-- create upvote -->
+      <div>
+        <%= link_to "", votes_path(vote: {
+                                    votable_type: votable.class,
+                                    votable_id: votable.id,
+                                    value: "upvote"
+                                  }),
+                          method: :post,
+                          remote: :true,
+                          class: "upvote" %>
+      </div>
+    <% end %>
+  <% end %>
+<% else %>
+  <!-- unauthenticated visitor -->
+  <a tabindex="0"
+    class="visitor upvote disabled"
+    role="button"
+    data-toggle="popover"
+    data-trigger="hover"
+    data-content="You must sign in to upvote.">
+  </a>
+<% end %>

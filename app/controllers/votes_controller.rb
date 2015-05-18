@@ -19,7 +19,10 @@ class VotesController < ApplicationController
 
   def destroy
     @vote = Vote.find(params[:id])
-    @votable = Question.find(params[:votable_id])
+    if params[:vote][:votable_type] == 'Question'
+      @votable = Question.find(params[:vote][:votable_id])
+    end
+
     if @vote.destroy
       respond_to do |format|
         format.js
@@ -29,8 +32,11 @@ class VotesController < ApplicationController
 
   def update
     @vote = Vote.find(params[:id])
+    if params[:vote][:votable_type] == 'Question'
+      @votable = Question.find(params[:vote][:votable_id])
+    end
+    
     if @vote.update_attributes(vote_params)
-      @votable = Question.find(params[:votable_id])
       respond_to do |format|
         format.js
       end
