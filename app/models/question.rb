@@ -10,6 +10,13 @@ class Question < ActiveRecord::Base
 
   scope :recent_first, -> { order(created_at: :desc) }
 
+  extend FriendlyId
+    friendly_id :slug_candidates, use: [:slugged, :finders]
+
+  def slug_candidates
+    [:title, [:title, :id]]
+  end
+
   def vote_points
     votes.upvote.size - votes.downvote.size
   end
