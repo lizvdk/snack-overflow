@@ -10,10 +10,10 @@ class VotesController < ApplicationController
       @votable = Answer.find(params[:vote][:votable_id])
     end
 
-    respond_to do |format|
-      if @vote.save
-        format.js
-      else
+    if @vote.save
+      render template: 'votes/refresh_votes'
+    else
+      respond_to do |format|
         format.html { render :back, notice: "failure"}
       end
     end
@@ -28,9 +28,7 @@ class VotesController < ApplicationController
     end
 
     if @vote.destroy
-      respond_to do |format|
-        format.js
-      end
+      render template: 'votes/refresh_votes'
     end
   end
 
@@ -43,9 +41,7 @@ class VotesController < ApplicationController
     end
 
     if @vote.update_attributes(vote_params)
-      respond_to do |format|
-        format.js
-      end
+      render template: 'votes/refresh_votes'
     end
   end
 
