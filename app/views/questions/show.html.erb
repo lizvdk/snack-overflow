@@ -8,7 +8,7 @@
       <h1><%= @question.title %></h1>
       <p class="asker">asked by
         <b><%= @question.user.email %></b>
-        <small><%= @question.created_at %></small>
+        <small><%= time_ago_in_words(@question.created_at) %> ago</small>
       </p>
       <% if @question.description.present? %>
         <blockquote><%= markdown(@question.description) %></blockquote>

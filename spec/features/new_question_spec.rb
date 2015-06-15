@@ -22,9 +22,8 @@ feature "ask a question", %{
     click_button "Ask question"
 
     expect(page).to have_content("Question posted sucessfully.")
-      expect(page).to have_content(question.title)
-      expect(page).to have_content(question.description)
-      expect(page).to have_content(question.created_at)
+    expect(page).to have_content(question.title)
+    expect(page).to have_content(question.description)
     within(".asker") do
       expect(page).to have_content(user.email)
     end

@@ -20,7 +20,6 @@ feature "answer a question", %{
     expect(page).to have_content("Answer posted sucessfully.")
     within("#answers") do
       expect(page).to have_content(answer.body)
-      expect(page).to have_content(answer.created_at)
       expect(page).to have_content(answer.user.email)
     end
   end

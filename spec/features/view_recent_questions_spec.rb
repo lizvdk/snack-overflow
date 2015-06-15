@@ -27,7 +27,6 @@ feature "view recent questions", %{
 
     expect(page).to have_content(questions[0].title)
     expect(page).to have_content(questions[0].description)
-    expect(page).to have_content(questions[0].created_at)
     within(".asker") do
       expect(page).to have_content(questions[0].user.email)
     end
