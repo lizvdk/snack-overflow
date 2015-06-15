@@ -15,6 +15,7 @@
         <div>
           <%= link_to "", vote_path(current_user.current_vote_for(votable),
                                     vote: {
+                                      votable: votable,
                                       votable_type: votable.class,
                                       votable_id: votable.id,
                                       value: "downvote"
@@ -29,6 +30,7 @@
         <div>
           <%= link_to "", vote_path(current_user.current_vote_for(votable),
                                     vote: {
+                                      votable: votable,
                                       votable_type: votable.class,
                                       votable_id: votable.id,
                                     }),
@@ -41,6 +43,7 @@
       <!-- create downvote -->
       <div>
         <%= link_to "", votes_path(vote: {
+                                    votable: votable,
                                     votable_type: votable.class,
                                     votable_id: votable.id,
                                     value: "downvote"

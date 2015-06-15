@@ -4,13 +4,9 @@ class VotesController < ApplicationController
   def create
     @vote = Vote.new(vote_params)
     @vote.user = current_user
-    if params[:vote][:votable_type] == 'Question'
-      @votable = Question.find(params[:vote][:votable_id])
-    elsif params[:vote][:votable_type] == 'Answer'
-      @votable = Answer.find(params[:vote][:votable_id])
-    end
 
     if @vote.save
+      @votable = @vote.votable
       render template: 'votes/refresh_votes'
     else
       respond_to do |format|
@@ -34,13 +30,8 @@ class VotesController < ApplicationController
 
   def update
     @vote = Vote.find(params[:id])
-    if params[:vote][:votable_type] == 'Question'
-      @votable = Question.find(params[:vote][:votable_id])
-    elsif params[:vote][:votable_type] == 'Answer'
-      @votable = Answer.find(params[:vote][:votable_id])
-    end
-
     if @vote.update_attributes(vote_params)
+      @votable = @vote.votable
       render template: 'votes/refresh_votes'
     end
   end
