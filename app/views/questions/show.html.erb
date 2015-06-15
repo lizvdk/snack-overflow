@@ -1,6 +1,6 @@
 <div id="question-<%=@question.id %>">
   <div class="row">
-    <div class="col-xs-1 voting">
+    <div class="col-xs-1 voting" id="question-<%= @question.id %>-voting">
       <%= render partial: 'votes/votes', locals: { votable: @question } %>
     </div>
 
