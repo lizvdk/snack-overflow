@@ -3,6 +3,8 @@ class Question < ActiveRecord::Base
   has_many :answers
   has_many :votes, as: :votable
 
+  include Votable
+
   validates :user, presence: true
   validates :title, presence: true,
                     length: { in: 4..100 }
@@ -15,21 +17,5 @@ class Question < ActiveRecord::Base
 
   def slug_candidates
     [:title, [:title, :id]]
-  end
-
-  def vote_points
-    votes.upvote.size - votes.downvote.size
-  end
-
-  def has_vote_from?(user)
-    votes.find_by(user_id: user.id).present?
-  end
-
-  def has_upvote_from?(user)
-    votes.upvote.find_by(user_id: user.id).present?
-  end
-
-  def has_downvote_from?(user)
-    votes.downvote.find_by(user_id: user.id).present?
   end
 end
