@@ -11,6 +11,7 @@ feature "user sign up", %{
     visit new_user_registration_path
 
     fill_in "Email", with: user.email
+    fill_in "Username", with: user.username
     fill_in "user_password", with: user.password
     fill_in "user_password_confirmation", with: user.password
 
@@ -18,7 +19,7 @@ feature "user sign up", %{
 
     expect(page).to have_content("Welcome! You have signed up successfully.")
     within(".dropdown") do
-      click_on user.email
+      click_on user.username
     end
     expect(page).to have_content("Sign out")
   end

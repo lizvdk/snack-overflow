@@ -25,7 +25,7 @@ feature "ask a question", %{
     expect(page).to have_content(question.title)
     expect(page).to have_content(question.description)
     within(".asker") do
-      expect(page).to have_content(user.email)
+      expect(page).to have_content(user.username)
     end
   end
 
