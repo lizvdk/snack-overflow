@@ -39,13 +39,13 @@ a, a:active, a:hover, a:focus {
   text-decoration: none;
 }
 
-footer {
+.page-footer {
   margin-top: 2em;
   border-top: 1px solid $gray-lighter;
   padding: 2em;
   text-align: center;
-}
 
-footer a {
-  margin: 0 1em;
+  a {
+    margin: 0 1em;
+  }
 }

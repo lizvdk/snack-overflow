@@ -14,9 +14,9 @@ feature "view recent questions", %{
 
     click_on "Answer"
 
-    expect(page).to have_selector("ul#recent-questions li:nth-child(1)",
+    expect(page).to have_selector('#recent-questions .well:nth-child(1)',
                     text: questions[19].title)
-    expect(page).to have_selector("ul#recent-questions li:nth-child(20)",
+    expect(page).to have_selector('#recent-questions .well:nth-child(20)',
                     text: questions[0].title)
   end
 
