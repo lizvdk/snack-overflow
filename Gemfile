@@ -17,6 +17,8 @@ gem 'friendly_id'
 gem 'redcarpet'
 gem 'puma'
 gem 'newrelic_rpm'
+gem 'rubocop', require: false
+gem 'scss_lint', require: false
 
 gem 'rails_12factor', group: :production
 
