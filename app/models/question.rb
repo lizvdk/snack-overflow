@@ -2,6 +2,8 @@ class Question < ActiveRecord::Base
   belongs_to :user
   has_many :answers
   has_many :votes, as: :votable
+  has_many :categorizations
+  has_many :categories, through: :categorizations
 
   include Votable
 
