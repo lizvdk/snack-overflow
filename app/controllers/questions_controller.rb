@@ -26,6 +26,23 @@ class QuestionsController < ApplicationController
     @questions = Question.recent_first.all
   end
 
+  def update
+    if params[:best_answer].present?
+      @question = current_user.questions.find(params[:id])
+      @question.best_answer_id = params[:best_answer]
+      @question.best_answer.is_best_answer = true
+
+      if @question.save
+        @question.best_answer_chosen!
+        flash[:success] = 'Best answer awarded!'
+        redirect_to question_path(@question)
+      else
+        render :show
+        flash[:error] = 'Something went wrong.'
+      end
+    end
+  end
+
   private
 
   def question_params

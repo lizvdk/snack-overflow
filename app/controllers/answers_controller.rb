@@ -8,6 +8,9 @@ class AnswersController < ApplicationController
     @answer.question = @question
 
     if @answer.save
+      if @answer.question.unanswered?
+        @answer.question.has_answers!
+      end
       flash[:success] = "Answer posted sucessfully."
       redirect_to question_path(@answer.question)
     else

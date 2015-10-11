@@ -11,17 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151011184318) do
+ActiveRecord::Schema.define(version: 20151011213911) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "answers", force: :cascade do |t|
-    t.text     "body",        null: false
-    t.integer  "user_id",     null: false
-    t.integer  "question_id", null: false
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.text     "body",                           null: false
+    t.integer  "user_id",                        null: false
+    t.integer  "question_id",                    null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.boolean  "is_best_answer", default: false
   end
 
   create_table "categories", force: :cascade do |t|
@@ -54,12 +55,14 @@ ActiveRecord::Schema.define(version: 20151011184318) do
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
   create_table "questions", force: :cascade do |t|
-    t.string   "title",       null: false
+    t.string   "title",                      null: false
     t.text     "description"
-    t.integer  "user_id",     null: false
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "user_id",                    null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.string   "slug"
+    t.integer  "status",         default: 0
+    t.integer  "best_answer_id"
   end
 
   add_index "questions", ["slug"], name: "index_questions_on_slug", using: :btree
