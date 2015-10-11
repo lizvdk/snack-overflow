@@ -4,6 +4,11 @@ class Question < ActiveRecord::Base
   has_many :votes, as: :votable
   has_many :categorizations
   has_many :categories, through: :categorizations
+  has_one :best_answer, class_name: 'Answer'
+
+  accepts_nested_attributes_for :best_answer
+
+  enum status: %w(unanswered has_answers best_answer_chosen)
 
   include Votable
 
