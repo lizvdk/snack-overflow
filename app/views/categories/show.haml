@@ -1,0 +1,7 @@
+%ol.breadcrumb
+  %li= link_to 'Questions', questions_path
+  %li.active= @category.name
+
+%h2= @category.name
+
+= render @category.questions
