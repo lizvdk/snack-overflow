@@ -3,7 +3,7 @@
     .col-xs-1.voting{ id: "answer-#{answer.id}-voting" }
       = render partial: 'votes/votes', locals: { votable: answer }
     .col-xs-11
-      - if answer.question.best_answer_chosen? && answer.is_best_answer
+      - if answer.is_best_answer
         %span.label.label-primary Best Answer!
       %p
         = markdown(answer.body)
@@ -14,6 +14,10 @@
         %small
           = time_ago_in_words(answer.created_at)
           ago
+
       - if current_user && current_user == answer.question.user && answer.question.has_answers?
-        = link_to question_path(answer.question, best_answer: answer), method: :put do
-          %button.btn.btn-primary Award Best Answer
+        = button_to 'Award Best Answer',
+                    question_answer_path(answer.question, answer,
+                    answer: { is_best_answer: true }),
+                    method: :put,
+                    class: 'btn btn-primary'
