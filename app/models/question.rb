@@ -4,9 +4,7 @@ class Question < ActiveRecord::Base
   has_many :votes, as: :votable
   has_many :categorizations
   has_many :categories, through: :categorizations
-  has_one :best_answer, class_name: 'Answer'
-
-  accepts_nested_attributes_for :best_answer
+  has_one :best_answer, -> { where(is_best_answer: true) }, class_name: 'Answer'
 
   enum status: %w(unanswered has_answers best_answer_chosen)
 
@@ -24,5 +22,17 @@ class Question < ActiveRecord::Base
 
   def slug_candidates
     [:title, [:title, :id]]
+  end
+
+  def set_as_has_answers
+    has_answers!
+  end
+
+  def set_to_best_answer_chosen
+    best_answer_chosen!
+  end
+
+  def has_best_answer?
+    best_answer.present?
   end
 end
