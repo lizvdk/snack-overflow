@@ -18,7 +18,7 @@ feature "user sign up", %{
     click_button "Sign up"
 
     expect(page).to have_content("Welcome! You have signed up successfully.")
-    within(".dropdown") do
+    within('.dropdown.user-links') do
       click_on user.username
     end
     expect(page).to have_content("Sign out")

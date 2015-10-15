@@ -10,9 +10,7 @@ feature "view recent questions", %{
 
   scenario "display questions, most recent- first" do
 
-    visit root_path
-
-    click_on "Answer"
+    visit questions_path
 
     expect(page).to have_selector('#recent-questions .well:nth-child(1)',
                     text: questions[19].title)
