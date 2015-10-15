@@ -5,9 +5,9 @@ feature "user signs out", %{
   I want to sign out
 } do
 
-  let(:user) { FactoryGirl.create(:user) }
-
   scenario "authenticated user signs out" do
+    user = FactoryGirl.create(:user)
+
     sign_in user
 
     visit root_path
