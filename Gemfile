@@ -18,6 +18,7 @@ gem 'redcarpet'
 gem 'puma'
 gem 'newrelic_rpm'
 gem 'rubocop', require: false
+gem 'rubocop-rspec'
 gem 'scss_lint', require: false
 gem 'haml'
 
